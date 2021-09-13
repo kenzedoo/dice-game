@@ -6,7 +6,7 @@ players = {}
 num_of_games = 5
 total_scores = {}
 
-
+# function to sign in user
 def sign_in():
     username = input("What is your name player: ").capitalize()
     if username in authed_players:
@@ -16,7 +16,7 @@ def sign_in():
         print("invalid sign in")
         sign_in()
 
-
+# function to initialise game for current user
 def play_game(current_player):
     print("Do you want to roll y/n", current_player)
     player_input = input()
@@ -26,7 +26,7 @@ def play_game(current_player):
         print("Too bad sucker")
         players[current_player].append(roll_dice(current_player))
 
-
+# function to roll dice for current user
 def roll_dice(current_player):
     score = 0
     dice_roll1 = random.randint(1, 6)
@@ -56,59 +56,23 @@ def roll_dice(current_player):
     return score
 
 
-# if x2 > x:
-#     print("player 2 wins")
-# print(("player 2 total score is: " + str(x2)))
-# #
-# if x > x2:
-#     print("player 1 wins")
-# print(("player 1 total score is: " + str(x)))
-# if x > x2:
-#     score6 = x
-#     winner_name = username
-# else:
-#     score6 = x2
-#     winner_name = username2
-#
-#
-# file = open("winnerwinner.txt", "t+a")
-# file.write(winner_name)
-# file.write(str(score6))
-# file.write(",")
-# file.close()
-
-
-# def leader_board():
-#     with open("score.txt", "r") as file:
-#         scores = file.read()
-#         new_scores = scores.split()
-#         swapped = True
-#         while swapped:
-#             swapped = False
-#             for i in range(len(new_scores) - 1):
-#                 if new_scores[i][-3:-1] < new_scores[i + 1][-3:-1]:
-#                     new_scores[i], new_scores[i + 1] = new_scores[i + 1], new_scores[i]
-#                     swapped = True
-#         if len(new_scores) - 1 < 5:
-#             for count in range(len(new_scores)):
-#                 print(new_scores[count]),
-#         else:
-#             for count in range(5):
-#                 print(new_scores[count])
-
-
+# keep looping sign_in function while keys in players map is less than 2
 while len(players.keys()) < 2:
     sign_in()
 
+# keep looping games for num_of_games for each player
 for game in range(num_of_games):
     for player in players.keys():
         play_game(player)
 
+# build map of total scores for each user
 for player in players.keys():
     total_scores[player] = sum(players[player])
 
+# get winning scores
 winners = [key for m in [max(total_scores.values())] for key, val in total_scores.items() if val == m]
 
+# if winners are greater than 1 then game was a draw else print winner
 if len(winners) > 1:
     print("Its time to d d d d d d d duel")
 else:
