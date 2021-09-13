@@ -1,10 +1,14 @@
 import random
 
+# GitHub Access Token: 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
+
+
 authed_players = ["Tom", "Mac", "Seth", "Kyle"]
 winner_name = ""
 players = {}
 num_of_games = 5
 total_scores = {}
+
 
 # function to sign in user
 def sign_in():
@@ -16,6 +20,7 @@ def sign_in():
         print("invalid sign in")
         sign_in()
 
+
 # function to initialise game for current user
 def play_game(current_player):
     print("Do you want to roll y/n", current_player)
@@ -25,6 +30,7 @@ def play_game(current_player):
     else:
         print("Too bad sucker")
         players[current_player].append(roll_dice(current_player))
+
 
 # function to roll dice for current user
 def roll_dice(current_player):
@@ -76,4 +82,7 @@ winners = [key for m in [max(total_scores.values())] for key, val in total_score
 if len(winners) > 1:
     print("Its time to d d d d d d d duel")
 else:
-    print("The winner is {} with a score of {}".format(winners[0], total_scores[winners[0]]))
+    with open("scores.txt", "a") as file:
+        print("The winner is {} with a score of {}".format(winners[0], total_scores[winners[0]]))
+        file.write("{},{}\n".format(winners[0], total_scores[winners[0]]))
+        file.close()
