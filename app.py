@@ -1,6 +1,6 @@
 import random
 
-# GitHub Access Token: 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
+# GitHub Access Token: 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
 
 
 authed_players = ["Tom", "Mac", "Seth", "Kyle"] #Array
