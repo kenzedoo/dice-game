@@ -1,0 +1,13 @@
+
+players map example
+{
+  "mac": [1,2,2],
+  "tom": [1,2,2]
+}
+
+
+total scores map example
+{
+  "mac": 5,
+  "tom": 5
+}
